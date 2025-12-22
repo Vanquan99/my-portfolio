@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <p>
-            © {currentYear} Nguyễn Văn A. Thiết kế và phát triển với 
+            © {currentYear} Đinh Văn Quân Thiết kế và phát triển với 
             <span className="heart"> ❤️ </span>
             tại Việt Nam.
           </p>
