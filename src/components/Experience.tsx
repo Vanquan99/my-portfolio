@@ -217,7 +217,7 @@ const Experience: React.FC = () => {
               <h4>Muốn biết thêm chi tiết?</h4>
               <p>Tải CV đầy đủ của tôi để xem thêm về kinh nghiệm và kỹ năng</p>
             </div>
-            <a href="/cv.pdf" className="cta-button" download>
+            <a href="https://drive.google.com/file/d/1EFH3yD_IeYyhdFbUN-eJpCsfPwDhZnPc/view?usp=drivesdk" className="cta-button" target="_blank" rel="noopener noreferrer">
               Tải CV
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
