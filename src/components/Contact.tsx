@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact: React.FC = () => {
@@ -22,14 +23,32 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    setTimeout(() => setSubmitStatus('idle'), 5000);
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_2lhvbqu',      // Service ID
+        'template_shb18av',     // Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'qz46UpIF8G-mkLDiM'     // Public Key
+      );
+      
+      setIsSubmitting(false);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -186,6 +205,12 @@ const Contact: React.FC = () => {
               {submitStatus === 'success' && (
                 <div className="form-status success">
                   ✓ Tin nhắn đã được gửi thành công! Tôi sẽ phản hồi sớm nhất có thể.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="form-status error">
+                  ✗ Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại hoặc liên hệ trực tiếp qua email.
                 </div>
               )}
             </form>
